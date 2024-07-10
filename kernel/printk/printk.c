@@ -2621,8 +2621,8 @@ void register_console(struct console *newcon)
 	struct console *bcon = NULL;
 	struct console_cmdline *c;
 	static bool has_preferred;
-
-	if (console_drivers)
+	pr_info("Fucking shit 01");
+		if (console_drivers)
 		for_each_console(bcon)
 			if (WARN(bcon == newcon,
 					"console '%s%d' already registered\n",
@@ -2643,6 +2643,7 @@ void register_console(struct console *newcon)
 			}
 		}
 	}
+	pr_info("Fucking shit 02");
 
 	if (console_drivers && console_drivers->flags & CON_BOOT)
 		bcon = console_drivers;
@@ -2667,6 +2668,7 @@ void register_console(struct console *newcon)
 			}
 		}
 	}
+	pr_info("Fucking shit 03");
 
 	/*
 	 *	See if this console matches one we selected on
@@ -2703,6 +2705,8 @@ void register_console(struct console *newcon)
 		break;
 	}
 
+	pr_info("Fucking shit 04");
+
 	if (!(newcon->flags & CON_ENABLED))
 		return;
 
@@ -2733,6 +2737,8 @@ void register_console(struct console *newcon)
 	if (newcon->flags & CON_EXTENDED)
 		nr_ext_console_drivers++;
 
+	pr_info("Fucking shit 05");
+
 	if (newcon->flags & CON_PRINTBUFFER) {
 		/*
 		 * console_unlock(); will print out the buffered messages
@@ -2754,8 +2760,13 @@ void register_console(struct console *newcon)
 		exclusive_console_stop_seq = console_seq;
 		logbuf_unlock_irqrestore(flags);
 	}
+	pr_info("Fucking shit 06");
+
 	console_unlock();
+	pr_info("Fucking shit 07");
+
 	console_sysfs_notify();
+	pr_info("Fucking shit 08");
 
 	/*
 	 * By unregistering the bootconsoles after we enable the real console
@@ -2777,7 +2788,10 @@ void register_console(struct console *newcon)
 			if (bcon->flags & CON_BOOT)
 				unregister_console(bcon);
 	}
+	pr_info("Fucking shit 09");
+
 }
+
 EXPORT_SYMBOL(register_console);
 
 int unregister_console(struct console *console)
